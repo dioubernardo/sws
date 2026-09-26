@@ -1,0 +1,102 @@
+
+Testing: sws
+Starting sws container...
+Warm-up...
+
+Test: index.html
+Running 15s test @ http://127.0.0.1:3000/index.html
+  2 threads and 2 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   287.34us    1.08ms  33.21ms   98.42%
+    Req/Sec     5.48k   817.18     7.72k    87.75%
+  Latency Distribution
+     50%  160.00us
+     75%  204.00us
+     90%  274.00us
+     99%    3.88ms
+  165721 requests in 13.82s, 68.43MB read
+  Socket errors: connect 0, read 0, write 0, timeout 2
+Requests/sec:  11992.42
+Transfer/sec:      4.95MB
+
+Test: logo.png
+Running 15s test @ http://127.0.0.1:3000/logo.png
+  2 threads and 2 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.10ms  638.01us  15.69ms   97.16%
+    Req/Sec     0.95k    93.59     1.06k    83.00%
+  Latency Distribution
+     50%    1.00ms
+     75%    1.10ms
+     90%    1.27ms
+     99%    2.85ms
+  28249 requests in 15.02s, 34.70GB read
+Requests/sec:   1880.98
+Transfer/sec:      2.31GB
+
+Test: file.bin
+Running 15s test @ http://127.0.0.1:3000/file.bin
+  2 threads and 2 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   259.63us    0.92ms  33.44ms   98.90%
+    Req/Sec     5.21k   770.82     6.39k    80.79%
+  Latency Distribution
+     50%  175.00us
+     75%  219.00us
+     90%  285.00us
+     99%    1.39ms
+  157485 requests in 13.80s, 1.55GB read
+  Socket errors: connect 0, read 0, write 0, timeout 2
+Requests/sec:  11415.83
+Transfer/sec:    114.68MB
+
+Testing: nginx
+Starting nginx container...
+Warm-up...
+
+Test: index.html
+Running 15s test @ http://127.0.0.1:3000/index.html
+  2 threads and 2 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   270.40us  704.88us  19.40ms   98.62%
+    Req/Sec     4.73k   677.83     5.99k    87.75%
+  Latency Distribution
+     50%  185.00us
+     75%  238.00us
+     90%  309.00us
+     99%    1.63ms
+  142799 requests in 13.79s, 52.43MB read
+  Socket errors: connect 0, read 0, write 0, timeout 2
+Requests/sec:  10356.07
+Transfer/sec:      3.80MB
+
+Test: logo.png
+Running 15s test @ http://127.0.0.1:3000/logo.png
+  2 threads and 2 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.19ms    1.07ms  41.78ms   98.37%
+    Req/Sec     0.89k    90.89     0.99k    91.00%
+  Latency Distribution
+     50%    1.06ms
+     75%    1.16ms
+     90%    1.33ms
+     99%    3.26ms
+  26659 requests in 15.01s, 32.75GB read
+Requests/sec:   1775.94
+Transfer/sec:      2.18GB
+
+Test: file.bin
+Running 15s test @ http://127.0.0.1:3000/file.bin
+  2 threads and 2 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   353.17us    1.41ms  33.91ms   98.53%
+    Req/Sec     4.50k   676.00     5.43k    89.11%
+  Latency Distribution
+     50%  195.00us
+     75%  247.00us
+     90%  322.00us
+     99%    4.28ms
+  135778 requests in 13.82s, 1.33GB read
+  Socket errors: connect 0, read 0, write 0, timeout 2
+Requests/sec:   9825.23
+Transfer/sec:     98.35MB
