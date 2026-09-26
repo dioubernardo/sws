@@ -12,6 +12,8 @@ http {
 	tcp_nopush on;   # Envia os cabeçalhos HTTP e o início do arquivo em um único pacote TCP
 	tcp_nodelay on;  # Evita buffer em pequenos pacotes, reduzindo latência
 
+    server_tokens            off;
+
     # cache
 	open_file_cache max=1000 inactive=60s;
 	open_file_cache_valid 60s;
