@@ -1,5 +1,9 @@
 # Static Web Server — SWS 🐹
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dioubernardo/sws/refs/heads/main/tests/fixtures/logo.png" width="150" alt="sws logo">
+</p>
+
 SWS é um build do Nginx otimizado para servir arquivos estáticos com o mínimo possível de complexidade, dependências e consumo de recursos.
 
 O objetivo do SWS é fazer uma única coisa bem:
