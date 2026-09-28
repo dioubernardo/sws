@@ -20,6 +20,21 @@ Se o seu projeto precisar de recursos como proxy reverso, reescrita de URL (rewr
 * Adequado para execução atrás de um proxy reverso, como o Traefik.
 * Nenhuma funcionalidade será adicionada sem uma justificativa clara e alinhada ao objetivo principal do projeto.
 
+## Como utilizar
+
+```yaml
+services:
+  site:
+    image: bersil/sws:main
+    restart: unless-stopped
+    volumes:
+      - ./html-files:/www
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+```
+
 ## Comportamento
 
 ### `document_root`
@@ -68,4 +83,11 @@ docker run --rm -p 3000:3000 -e "SWS_SPA_FALLBACK=1" sws
 
 ```bash
 bash tests/tests.sh
+```
+
+## Envindo a imagem para Docker Hub
+
+```bash
+docker build -t bersil/sws:main .
+docker push bersil/sws:main
 ```
