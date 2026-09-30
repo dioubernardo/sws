@@ -64,6 +64,7 @@ http {
 
         # Restingir acesso a arquivo .*
         location ~ /\. {
+			access_log off;
             return 404;
         }
 
