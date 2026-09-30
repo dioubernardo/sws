@@ -95,3 +95,7 @@ bash tests/tests.sh
 docker build -t bersil/sws:main .
 docker push bersil/sws:main
 ```
+
+# @TODO
+
+- Comprimir os arquivos antes e usar --with-http_gzip_static_module
