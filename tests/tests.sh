@@ -17,7 +17,7 @@ build() {
 
 wait_for_server() {
     for i in {1..50}; do
-        if curl -fsS "http://127.0.0.1:3000/_health" >/dev/null 2>&1; then
+        if curl -fsS "http://127.0.0.1/_health" >/dev/null 2>&1; then
             return 0
         fi
 
@@ -58,7 +58,7 @@ check_request_code() {
     local code
 
     code=$(curl --path-as-is -sS -o /dev/null -w "%{http_code}" \
-        "http://127.0.0.1:3000${path}")
+        "http://127.0.0.1${path}")
 
     if [[ "$code" == "$expected_code" ]]; then
         echo "  ✓ ${path} -> ${code}"
@@ -78,10 +78,10 @@ check_method() {
 
     if [[ "$method" == "HEAD" ]]; then
         code=$(curl -I --path-as-is -sS -o /dev/null -w "%{http_code}" \
-            "http://127.0.0.1:3000${path}")
+            "http://127.0.0.1${path}")
     else
         code=$(curl -X "$method" --path-as-is -sS -o /dev/null -w "%{http_code}" \
-            "http://127.0.0.1:3000${path}")
+            "http://127.0.0.1${path}")
     fi
 
     if [[ "$code" == "$expected_code" ]]; then
@@ -105,7 +105,7 @@ check_conditional_request() {
 
     # Primeira requisição: obtém o header
     curl -sS -D "$headers" -o /dev/null \
-        "http://127.0.0.1:3000${path}"
+        "http://127.0.0.1${path}"
 
     value=$(grep -i "^${header}:" "$headers" |
         sed 's/^[^:]*:[[:space:]]*//I' |
@@ -123,12 +123,12 @@ check_conditional_request() {
         ETag)
             code=$(curl -sS -o /dev/null -w "%{http_code}" \
                 -H "If-None-Match: ${value}" \
-                "http://127.0.0.1:3000${path}")
+                "http://127.0.0.1${path}")
             ;;
         Last-Modified)
             code=$(curl -sS -o /dev/null -w "%{http_code}" \
                 -H "If-Modified-Since: ${value}" \
-                "http://127.0.0.1:3000${path}")
+                "http://127.0.0.1${path}")
             ;;
         *)
             echo "  ✗ Unsupported conditional header: ${header}"
@@ -155,7 +155,7 @@ check_cache_control() {
     headers=$(mktemp)
 
     curl -sS -D "$headers" -o /dev/null \
-        "http://127.0.0.1:3000${path}"
+        "http://127.0.0.1${path}"
 
     value=$(grep -i "^Cache-Control:" "$headers" |
         sed 's/^[^:]*:[[:space:]]*//I' |
@@ -179,7 +179,7 @@ check_content_type() {
     local value
 
     value=$(curl -sS -o /dev/null -w "%{content_type}" \
-        "http://127.0.0.1:3000${path}")
+        "http://127.0.0.1${path}")
 
     if [[ "$value" == "$expected" || ("$expected" == "application/javascript" && "$value" == "text/javascript") ]]; then
         echo "  ✓ ${path} -> Content-Type: ${value}"
@@ -202,9 +202,9 @@ check_compression() {
     headers=$(mktemp)
 
     if [[ -z "$accept_encoding" ]]; then
-        curl -sS -D "$headers" -o /dev/null "http://127.0.0.1:3000${path}"
+        curl -sS -D "$headers" -o /dev/null "http://127.0.0.1${path}"
     else
-        curl -sS -H "Accept-Encoding: ${accept_encoding}" -D "$headers" -o /dev/null "http://127.0.0.1:3000${path}"
+        curl -sS -H "Accept-Encoding: ${accept_encoding}" -D "$headers" -o /dev/null "http://127.0.0.1${path}"
     fi
 
     encoding_value=$(grep -i "^Content-Encoding:" "$headers" |
@@ -248,8 +248,8 @@ check_compressed_body() {
     local original
     local decompressed
 
-    original=$(curl -sS "http://127.0.0.1:3000${path}")
-    decompressed=$(curl --compressed -sS "http://127.0.0.1:3000${path}")
+    original=$(curl -sS "http://127.0.0.1${path}")
+    decompressed=$(curl --compressed -sS "http://127.0.0.1${path}")
 
     if [[ "$original" == "$decompressed" ]]; then
         echo "  ✓ ${path} -> body matches after decompression"

@@ -79,10 +79,6 @@ O endpoint `/_health` sempre retorna `200 OK`.
 docker build -t sws .
 ```
 
-```bash
-docker run --rm -p 3000:3000 -e "SWS_SPA_FALLBACK=1" sws
-```
-
 ## Para rodar os testes
 
 ```bash

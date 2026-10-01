@@ -86,7 +86,7 @@ COPY nginx.conf.template /app/nginx.conf.template
 COPY mime.types /app/mime.types
 COPY --chmod=+x entrypoint.sh /app/entrypoint.sh
 
-EXPOSE 3000
+EXPOSE 80
 
 ENV SWS_MAX_AGE=86400
 ENV SWS_CACHE_POLICY=max-age

@@ -44,7 +44,7 @@ for SERVER in sws nginx; do
     # Warm-up
     echo "Warm-up..."
     sleep 5
-    curl -s -o /dev/null "http://127.0.0.1:3000/"
+    curl -s -o /dev/null "http://127.0.0.1/"
     sleep 5
 
     for file in index.html logo.png file.bin; do
@@ -54,7 +54,7 @@ for SERVER in sws nginx; do
 
         echo "  {\"server\": \"${SERVER}\", \"test\": \"${file}\", \"stats\": ["  >> $RESOURCE_LOG
 
-        wrk -t 2 -c 2 -d 15s --latency -H "Accept-Encoding: gzip" "http://127.0.0.1:3000/${file}" &
+        wrk -t 2 -c 2 -d 15s --latency -H "Accept-Encoding: gzip" "http://127.0.0.1/${file}" &
         WRK_PID=$!
 
         (
