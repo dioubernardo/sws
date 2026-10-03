@@ -88,7 +88,7 @@ bash tests/tests.sh
 ## Envindo a imagem para Docker Hub
 
 ```bash
-docker build -t bersil/sws:main .
+docker build -t bersil/sws:main . --no-cache
 docker push bersil/sws:main
 ```
 

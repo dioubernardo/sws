@@ -92,5 +92,8 @@ ENV SWS_MAX_AGE=86400
 ENV SWS_CACHE_POLICY=max-age
 ENV SWS_SPA_FALLBACK=0
 
+HEALTHCHECK --interval=30s --timeout=3s --retries=2 \
+  CMD curl -f http://127.0.0.1/_health || exit 1
+
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
