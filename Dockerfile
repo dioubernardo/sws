@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Stable version in https://nginx.org/en/download.html
-ARG NGINX_VERSION=1.30.5
+ARG NGINX_VERSION=1.30.6
 
 # Utilizar o ADD para descarregar e extrair o NGINX automaticamente
 ADD https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz /tmp/nginx.tar.gz

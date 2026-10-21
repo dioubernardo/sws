@@ -76,7 +76,7 @@ O endpoint `/_health` sempre retorna `200 OK`.
 ## Como compilar e rodar a partir do código-fonte
 
 ```bash
-docker build -t sws .
+docker build --pull -t sws .
 ```
 
 ## Para rodar os testes
@@ -88,7 +88,7 @@ bash tests/tests.sh
 ## Envindo a imagem para Docker Hub
 
 ```bash
-docker build -t bersil/sws:main . --no-cache
+docker build --pull -t bersil/sws:main . --no-cache
 docker push bersil/sws:main
 ```
 

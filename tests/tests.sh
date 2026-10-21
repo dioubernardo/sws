@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DIR="$(cd "$(dirname "$0")" && pwd)"
 
 cleanup() {
     docker stop sws-test >/dev/null 2>&1 || true
@@ -12,7 +12,7 @@ trap cleanup EXIT
 
 build() {
     echo "==> Building image"
-    docker build -t sws "$DIR/../" --no-cache
+    docker build --pull -t sws "$DIR/../" --no-cache
 }
 
 wait_for_server() {
